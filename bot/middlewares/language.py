@@ -1,13 +1,30 @@
-from aiogram import types
-from aiogram.dispatcher.middlewares import BaseMiddleware
+from typing import Any, Awaitable, Callable, Dict
 
-from bot.database.models import User
+from aiogram import BaseMiddleware
+from aiogram.types import Message
+
+from bot.database import get_user
+from bot.utils.localization import get_string
 
 
 class LanguageMiddleware(BaseMiddleware):
-    async def on_pre_process_message(self, message: types.Message, data: dict):
-        user = await User.find_one({"telegram_id": message.from_user.id})
+    async def __call__(
+        self,
+        handler: Callable[[Message, Dict[str, Any]], Awaitable[Any]],
+        event: Message,
+        data: Dict[str, Any]
+    ) -> Any:
+        user = await get_user(event.from_user.id)
         if user:
-            data['language'] = user.language
+            language = user.get('language', 'en')
         else:
-            data['language'] = 'en'
+            language = 'en'
+
+        data['language'] = language
+        data['_'] = get_string(language)
+
+        return await handler(event, data)
+
+
+def setup_middlewares(dp):
+    dp.message.middleware(LanguageMiddleware())

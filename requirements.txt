@@ -1,6 +1,6 @@
 aiogram
 motor
-mongo
+umongo
 python-dotenv
 aiohttp
 pytest

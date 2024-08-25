@@ -2,12 +2,10 @@ from unittest.mock import AsyncMock, patch
 
 import pytest
 from aiogram import Bot, Dispatcher
-from aiogram.filters import Command
 from aiogram.types import Message
 from aiogram.types import User as TelegramUser
 
 from bot.config import ADMIN_IDS
-from bot.database.models import User
 from bot.handlers.admin import cmd_admin
 from bot.handlers.user import cmd_start
 

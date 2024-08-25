@@ -1,0 +1,10 @@
+aiogram
+motor
+mongo
+python-dotenv
+aiohttp
+pytest
+pytest-asyncio
+black
+isort
+flake8

@@ -55,19 +55,22 @@ async def test_cmd_start(bot, message):
 async def test_cmd_admin_with_rights(bot, message):
     # Подготовка
     message.from_user = AsyncMock(spec=TelegramUser)
-    # Используем ID администратора из конфига
-    message.from_user.id = ADMIN_IDS[0]
+    message.from_user.id = ADMIN_IDS[0]  # ID администратора из конфига
 
     # Мокаем метод count_documents
-    with patch('bot.database.models.User.count_documents',
-               new_callable=AsyncMock) as mock_count:
+    with patch(
+        'bot.database.models.User.count_documents',
+        new_callable=AsyncMock
+    ) as mock_count:
         mock_count.return_value = 10
         # Действие
         await cmd_admin(message)
 
     # Проверка
     message.reply.assert_called_once()
-    assert "There are currently 10 users registered" in message.reply.call_args[0][0]
+    assert "There are currently 10 users registered" in (
+        message.reply.call_args[0][0]
+    )
 
 # Тест для команды /admin (без прав администратора)
 

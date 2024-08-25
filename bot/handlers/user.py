@@ -15,7 +15,9 @@ async def cmd_start(message: Message):
         user = User(telegram_id=message.from_user.id)
         await user.commit()
 
-    await message.reply("Hello! I'm TeleForge, a universal Telegram bot. How can I help you?")
+    await message.reply(
+        "Hello! I'm TeleForge, a universal Telegram bot. How can I help you?"
+    )
 
 
 def register_user_handlers(dp: Router):

@@ -12,7 +12,9 @@ router = Router()
 @router.message(Command("admin"), F.from_user.id.in_(ADMIN_IDS))
 async def cmd_admin(message: Message):
     user_count = await User.count_documents({})
-    await message.reply(f"Hello, admin! There are currently {user_count} users registered.")
+    await message.reply(
+        f"Hello, admin! There are currently {user_count} users registered."
+    )
 
 
 def register_admin_handlers(dp: Router):

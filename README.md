@@ -17,7 +17,7 @@ TeleForge is a flexible and powerful template for creating Telegram bots of any 
 
 ## 📋 Prerequisites
 
-- Python 3.9 or higher
+- Python 3.12.3 or higher
 - MongoDB
 - Docker (optional, for containerized deployment)
 

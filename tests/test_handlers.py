@@ -61,7 +61,8 @@ async def test_cmd_admin_with_rights(bot, message):
     message.from_user.id = ADMIN_IDS[0]
 
     # Мокаем метод count_documents
-    with patch('bot.database.models.User.count_documents', new_callable=AsyncMock) as mock_count:
+    with patch('bot.database.models.User.count_documents',
+               new_callable=AsyncMock) as mock_count:
         mock_count.return_value = 10
         # Действие
         await cmd_admin(message)

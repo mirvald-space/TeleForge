@@ -1,0 +1,50 @@
+# Translations template for Telegram Bot Starter.
+# Copyright (C) 2025
+# This file is distributed under the same license as the Telegram Bot Starter project.
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+# Start handler
+msgid "👋 Hello, {full_name}!\n\nWelcome to the bot. Use /help to see available commands."
+msgstr ""
+
+# Help handler
+msgid "📚 <b>Available commands:</b>\n\n/start - Start the bot\n/help - Show this help message\n/language - Change language"
+msgstr ""
+
+# Language handler
+msgid "🌐 Please select your language:"
+msgstr ""
+
+msgid "Language changed"
+msgstr ""
+
+msgid "✅ Your language has been set to: {language}"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Russian"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
+
+# Echo handler
+msgid "I don't understand this command. Use /help to see available commands."
+msgstr ""
+
+# Throttling middleware
+msgid "Please don't spam! Wait a moment before sending another message."
+msgstr "" 

@@ -1,0 +1,7 @@
+aiogram>=3.1.1
+pymongo>=4.5.0
+motor>=3.3.0
+python-dotenv>=1.0.0
+pydantic>=2.4.0
+pydantic-settings>=2.0.3
+Babel>=2.12.1 

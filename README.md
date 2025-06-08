@@ -1,304 +1,444 @@
-# Telegram Bot Starter
-
 <div align="center">
-  <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="Python 3.9+">
-  <img src="https://img.shields.io/badge/aiogram-3.x-blue" alt="aiogram 3.x">
-  <img src="https://img.shields.io/badge/MongoDB-Ready-green" alt="MongoDB Ready">
-  <img src="https://img.shields.io/badge/i18n-🇬🇧_🇷🇺_🇺🇦-orange" alt="i18n Support">
-  <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="MIT License">
+  <img src="https://i.imgur.com/qs9Vj4Z.png" alt="TeleForge Logo" width="500" />
+  <h1>TeleForge</h1>
+  <p>Production-ready Telegram bot template with clean architecture</p>
+
+  <div>
+    <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="Python 3.9+">
+    <img src="https://img.shields.io/badge/aiogram-3.x-blue" alt="aiogram 3.x">
+    <img src="https://img.shields.io/badge/MongoDB-Ready-green" alt="MongoDB Ready">
+    <img src="https://img.shields.io/badge/i18n-🇬🇧_🇷🇺_🇺🇦-orange" alt="i18n Support">
+    <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="MIT License">
+  </div>
 </div>
 
 <details open>
 <summary>English 🇬🇧</summary>
 
-## Power-Up Your Telegram Bot Development
+## About TeleForge
 
-> Start building professional bots in minutes, not days!
+A professional-grade template for Telegram bots based on aiogram 3.x, designed with clean architecture principles and essential production features:
 
-A professional-grade template for Telegram bots based on aiogram 3.x. This template embraces clean architecture principles while providing essential features most Telegram bots need, eliminating repetitive boilerplate.
+- **Structured Architecture**: Proper separation of concerns with modular design
+- **MongoDB Integration**: Async database operations with proper connection pooling
+- **Multi-language Support**: Built-in i18n with English, Russian, Ukrainian translations
+- **Middleware Stack**: Throttling, session management, language handling
+- **Command System**: Well-organized command registration and processing
+- **Error Handling**: Comprehensive exception management and logging
 
-**This is not just another template.** It's a carefully crafted foundation with production-ready features that can scale from simple bots to complex applications.
+## Quick Start
 
-### 🔥 Why This Template?
+```bash
+# Clone repository
+git clone https://github.com/mirvald-space/TeleForge.git
+cd TeleForge
 
-- **Developer Experience First**: Clear structure, easy to extend and maintain
-- **Real-World Ready**: Includes auth, MongoDB integration, i18n, and more
-- **Clean Architecture**: Properly separated concerns, testable and maintainable
-- **International Support**: 🇬🇧 English, 🇷🇺 Russian, 🇺🇦 Ukrainian - add more easily
-- **Performance Focused**: Async from the ground up with proper error handling
+# Setup environment
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-### ⚙️ Key Features
+# Compile translations
+python compile_translations.py
 
-- **Full aiogram 3.x** support with middleware integration
-- **MongoDB integration** with Motor (async driver)
-- **Multi-language support** with proper i18n implementation
-- **Command registration** and management
-- **User management** with activity tracking
-- **Throttling middleware** to prevent abuse
-- **Clean project structure** with proper separation of concerns
-- **Environment configuration** with validation
+# Configure environment
+cp .env.example .env
+# Edit .env with your settings
 
-### 🚀 Getting Started
-
-1. Clone this repository
-   ```bash
-   git clone https://github.com/yourusername/telegram-bot-starter
-   cd telegram-bot-starter
-   ```
-
-2. Set up a virtual environment
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. Install dependencies
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Compile translations
-   ```bash
-   python compile_translations.py
-   ```
-
-5. Launch MongoDB locally or use a remote instance
-
-6. Create `.env` file with required environment variables (see `ENVIRONMENT.md`)
-
-7. Run the bot
-   ```bash
-   python -m app
-   ```
-
-### 📂 Project Structure
-
-```
-├── app/                      # Main application package
-│   ├── handlers/             # Message and command handlers
-│   ├── middlewares/          # Middleware components
-│   ├── database/             # Database integration
-│   ├── keyboards/            # Reply and inline keyboards
-│   ├── config/               # Configuration management
-│   └── utils/                # Utility functions
-├── locales/                  # Translation files
-│   ├── en/                   # English translations
-│   ├── ru/                   # Russian translations
-│   └── uk/                   # Ukrainian translations
-├── .env.example              # Environment variables example
-└── compile_translations.py   # Helper for i18n compilation
+# Run bot
+python -m app
 ```
 
-### 🛠️ Customizing
+## Project Structure
 
-The template is designed to be extended easily:
+```
+app/
+├── __init__.py
+├── __main__.py          # Entry point
+├── config/              # Configuration
+│   ├── __init__.py
+│   └── settings.py      # Settings from environment
+├── database/            # Database layer
+│   ├── __init__.py
+│   └── mongodb.py       # MongoDB connection
+├── handlers/            # Message handlers
+│   ├── __init__.py      # Handler registration
+│   ├── start.py
+│   ├── help.py
+│   ├── language.py
+│   └── echo.py
+├── keyboards/           # Telegram keyboards
+│   ├── __init__.py
+│   └── language.py      # Language selection
+├── middlewares/         # Request middleware
+│   ├── __init__.py
+│   ├── i18n.py          # Internationalization
+│   └── throttling.py    # Rate limiting
+└── utils/               # Utilities
+    ├── __init__.py
+    ├── commands.py      # Bot command setup
+    └── misc.py          # Helper functions
 
-1. Add new handlers in `app/handlers/`
-2. Create new keyboard layouts in `app/keyboards/`
-3. Add more collections/models to `app/database/`
-4. Extend the middleware system in `app/middlewares/`
+locales/                 # Translation files
+├── en/LC_MESSAGES/
+├── ru/LC_MESSAGES/
+└── uk/LC_MESSAGES/
+```
 
-### 🔗 License
+## Configuration
 
-MIT — free to use and modify. Attribution appreciated!
+`.env` file example:
+
+```
+# Bot
+BOT_TOKEN=your_telegram_bot_token
+BOT_NAME=TeleForge
+
+# Database
+MONGODB_URI=mongodb://localhost:27017/tg_bot
+
+# Admin
+ADMIN_IDS=123456789,987654321
+
+# Locale
+DEFAULT_LANGUAGE=en
+```
+
+## Extending
+
+### Adding Handlers
+
+1. Create handler file in `app/handlers/`
+2. Define handler function and registration function:
+
+```python
+from aiogram import Dispatcher, F
+from aiogram.filters import Command
+from aiogram.types import Message
+from app.middlewares.i18n import _
+
+async def cmd_custom(message: Message) -> None:
+    await message.answer(_("Custom command response"))
+
+def register_custom_handlers(dp: Dispatcher) -> None:
+    dp.message.register(cmd_custom, Command("custom"))
+```
+
+3. Register in `app/handlers/__init__.py`
+
+### Adding Languages
+
+1. Create directory structure:
+```bash
+mkdir -p locales/new_lang/LC_MESSAGES
+```
+
+2. Copy template and translate:
+```bash
+cp locales/bot.pot locales/new_lang/LC_MESSAGES/bot.po
+# Edit .po file with translations
+```
+
+3. Compile translations:
+```bash
+python compile_translations.py
+```
+
+4. Update keyboard in `app/keyboards/language.py`
+
+## License
+
+MIT
 
 </details>
 
 <details>
 <summary>Русский 🇷🇺</summary>
 
-## Ускорьте разработку Telegram-ботов
+## О TeleForge
 
-> Начните создавать профессиональных ботов за минуты, а не дни!
+Профессиональный шаблон для создания Telegram-ботов на базе aiogram 3.x, разработанный с принципами чистой архитектуры и включающий все необходимые для продакшена функции:
 
-Профессиональный шаблон для разработки Telegram-ботов на основе aiogram 3.x. Этот шаблон следует принципам чистой архитектуры и предоставляет основные функции, необходимые большинству Telegram-ботов, избавляя от необходимости повторять шаблонный код.
+- **Структурированная архитектура**: Правильное разделение ответственности с модульным дизайном
+- **Интеграция с MongoDB**: Асинхронные операции с базой данных с правильным управлением соединениями
+- **Многоязычная поддержка**: Встроенный i18n с переводами на английский, русский, украинский языки
+- **Набор middleware**: Ограничение частоты запросов, управление сессиями, обработка языка
+- **Система команд**: Хорошо организованная регистрация и обработка команд
+- **Обработка ошибок**: Комплексное управление исключениями и логирование
 
-**Это не просто очередной шаблон.** Это тщательно продуманная основа с готовыми для производства функциями, которые могут масштабироваться от простых ботов до сложных приложений.
+## Быстрый старт
 
-### 🔥 Почему этот шаблон?
+```bash
+# Клонировать репозиторий
+git clone https://github.com/mirvald-space/TeleForge.git
+cd TeleForge
 
-- **Опыт разработчика на первом месте**: Четкая структура, легко расширять и поддерживать
-- **Готов к реальному использованию**: Включает аутентификацию, интеграцию с MongoDB, i18n и многое другое
-- **Чистая архитектура**: Правильно разделенные компоненты, тестируемые и поддерживаемые
-- **Международная поддержка**: 🇬🇧 Английский, 🇷🇺 Русский, 🇺🇦 Украинский - легко добавить еще
-- **Ориентирован на производительность**: Асинхронность с самого начала с правильной обработкой ошибок
+# Настройка окружения
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-### ⚙️ Ключевые особенности
+# Компиляция переводов
+python compile_translations.py
 
-- **Полная поддержка aiogram 3.x** с интеграцией промежуточного ПО
-- **Интеграция с MongoDB** с использованием Motor (асинхронный драйвер)
-- **Многоязычная поддержка** с правильной реализацией i18n
-- **Регистрация и управление командами**
-- **Управление пользователями** с отслеживанием активности
-- **Промежуточное ПО для ограничения частоты запросов** для предотвращения злоупотреблений
-- **Чистая структура проекта** с правильным разделением обязанностей
-- **Конфигурация среды** с валидацией
+# Настройка окружения
+cp .env.example .env
+# Отредактируйте .env вашими настройками
 
-### 🚀 Начало работы
-
-1. Клонировать этот репозиторий
-   ```bash
-   git clone https://github.com/yourusername/telegram-bot-starter
-   cd telegram-bot-starter
-   ```
-
-2. Настроить виртуальное окружение
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # На Windows: venv\Scripts\activate
-   ```
-
-3. Установить зависимости
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Скомпилировать переводы
-   ```bash
-   python compile_translations.py
-   ```
-
-5. Запустить MongoDB локально или использовать удаленный экземпляр
-
-6. Создать файл `.env` с необходимыми переменными окружения (см. `ENVIRONMENT.md`)
-
-7. Запустить бота
-   ```bash
-   python -m app
-   ```
-
-### 📂 Структура проекта
-
-```
-├── app/                      # Основной пакет приложения
-│   ├── handlers/             # Обработчики сообщений и команд
-│   ├── middlewares/          # Компоненты промежуточного ПО
-│   ├── database/             # Интеграция с базой данных
-│   ├── keyboards/            # Клавиатуры ответов и инлайн-клавиатуры
-│   ├── config/               # Управління конфігурацією
-│   └── utils/                # Служебные функции
-├── locales/                  # Файлы переводов
-│   ├── en/                   # Английские переводы
-│   ├── ru/                   # Русские переводы
-│   └── uk/                   # Украинские переводы
-├── .env.example              # Пример переменных окружения
-└── compile_translations.py   # Помощник для компиляции i18n
+# Запуск бота
+python -m app
 ```
 
-### 🛠️ Настройка
+## Структура проекта
 
-Шаблон разработан для легкого расширения:
+```
+app/
+├── __init__.py
+├── __main__.py          # Точка входа
+├── config/              # Конфигурация
+│   ├── __init__.py
+│   └── settings.py      # Настройки из окружения
+├── database/            # Слой базы данных
+│   ├── __init__.py
+│   └── mongodb.py       # Подключение к MongoDB
+├── handlers/            # Обработчики сообщений
+│   ├── __init__.py      # Регистрация обработчиков
+│   ├── start.py
+│   ├── help.py
+│   ├── language.py
+│   └── echo.py
+├── keyboards/           # Клавиатуры Telegram
+│   ├── __init__.py
+│   └── language.py      # Выбор языка
+├── middlewares/         # Middleware запросов
+│   ├── __init__.py
+│   ├── i18n.py          # Интернационалізація
+│   └── throttling.py    # Ограничение частоти
+└── utils/               # Утиліти
+    ├── __init__.py
+    ├── commands.py      # Настройка команд бота
+    └── misc.py          # Вспомогательные функции
 
-1. Добавьте новые обработчики в `app/handlers/`
-2. Создайте новые макеты клавиатур в `app/keyboards/`
-3. Добавьте дополнительные коллекции/модели в `app/database/`
-4. Расширяйте систему промежуточного ПЗ в `app/middlewares/`
+locales/                 # Файлы переводов
+├── en/LC_MESSAGES/
+├── ru/LC_MESSAGES/
+└── uk/LC_MESSAGES/
+```
 
-### 🔗 Лицензия
+## Конфигурация
 
-MIT — свободно для использования и модификации. Атрибуция приветствуется!
+Пример файла `.env`:
+
+```
+# Бот
+BOT_TOKEN=your_telegram_bot_token
+BOT_NAME=TeleForge
+
+# База данных
+MONGODB_URI=mongodb://localhost:27017/tg_bot
+
+# Админ
+ADMIN_IDS=123456789,987654321
+
+# Локализация
+DEFAULT_LANGUAGE=ru
+```
+
+## Расширение
+
+### Добавление обработчиков
+
+1. Создайте файл обработчика в `app/handlers/`
+2. Определите функцию обработчика и функцию регистрации:
+
+```python
+from aiogram import Dispatcher, F
+from aiogram.filters import Command
+from aiogram.types import Message
+from app.middlewares.i18n import _
+
+async def cmd_custom(message: Message) -> None:
+    await message.answer(_("Ответ на пользовательскую команду"))
+
+def register_custom_handlers(dp: Dispatcher) -> None:
+    dp.message.register(cmd_custom, Command("custom"))
+```
+
+3. Зарегистрируйте в `app/handlers/__init__.py`
+
+### Добавление языков
+
+1. Создайте структуру директорий:
+```bash
+mkdir -p locales/new_lang/LC_MESSAGES
+```
+
+2. Скопируйте шаблон и переведите:
+```bash
+cp locales/bot.pot locales/new_lang/LC_MESSAGES/bot.po
+# Отредактируйте файл .po с переводами
+```
+
+3. Скомпилируйте переводы:
+```bash
+python compile_translations.py
+```
+
+4. Обновите клавиатуру в `app/keyboards/language.py`
+
+## Лицензия
+
+MIT
 
 </details>
 
 <details>
 <summary>Українська 🇺🇦</summary>
 
-## Прискорте розробку Telegram-ботів
+## Про TeleForge
 
-> Почніть створювати професійних ботів за хвилини, а не дні!
+Професійний шаблон для створення Telegram-ботів на базі aiogram 3.x, розроблений за принципами чистої архітектури та включає всі необхідні для продакшену функції:
 
-Професійний шаблон для розробки Telegram-ботів на основі aiogram 3.x. Цей шаблон дотримується принципів чистої архітектури та надає основні функції, необхідні більшості Telegram-ботів, позбавляючи від необхідності повторювати шаблонний код.
+- **Структурована архітектура**: Правильний розподіл відповідальності з модульним дизайном
+- **Інтеграція з MongoDB**: Асинхронні операції з базою даних з правильним управлінням з'єднаннями
+- **Багатомовна підтримка**: Вбудований i18n з перекладами англійською, російською, українською мовами
+- **Набір middleware**: Обмеження частоти запитів, управління сесіями, обробка мови
+- **Система команд**: Добре організована реєстрація та обробка команд
+- **Обробка помилок**: Комплексне управління винятками та логування
 
-**Це не просто черговий шаблон.** Це ретельно продумана основа з готовими для виробництва функціями, які можуть масштабуватися від простих ботів до складних додатків.
+## Швидкий старт
 
-### 🔥 Чому цей шаблон?
+```bash
+# Клонувати репозиторій
+git clone https://github.com/mirvald-space/TeleForge.git
+cd TeleForge
 
-- **Досвід розробника на першому місці**: Чітка структура, легко розширювати та підтримувати
-- **Готовий до реального використання**: Включає автентифікацію, інтеграцію з MongoDB, i18n та багато іншого
-- **Чиста архітектура**: Правильно розділені компоненти, що тестуються та підтримуються
-- **Міжнародна підтримка**: 🇬🇧 Англійська, 🇷🇺 Російська, 🇺🇦 Українська - легко додати ще
-- **Орієнтований на продуктивність**: Асинхронність з самого початку з правильною обробкою помилок
+# Налаштування середовища
+python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt
 
-### ⚙️ Ключові особливості
+# Компіляція перекладів
+python compile_translations.py
 
-- **Повна підтримка aiogram 3.x** з інтеграцією проміжного ПЗ
-- **Інтеграція з MongoDB** з використанням Motor (асинхронний драйвер)
-- **Багатомовна підтримка** з правильною реалізацією i18n
-- **Реєстрація та управління командами**
-- **Управління користувачами** з відстеженням активності
-- **Проміжне ПЗ для обмеження частоти запитів** для запобігання зловживанням
-- **Чиста структура проекту** з правильним розподілом обов'язків
-- **Конфігурація середовища** з валідацією
+# Налаштування середовища
+cp .env.example .env
+# Відредагуйте .env вашими налаштуваннями
 
-### 🚀 Початок роботи
-
-1. Клонувати цей репозиторій
-   ```bash
-   git clone https://github.com/yourusername/telegram-bot-starter
-   cd telegram-bot-starter
-   ```
-
-2. Налаштувати віртуальне оточення
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # На Windows: venv\Scripts\activate
-   ```
-
-3. Встановити залежності
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. Скомпілювати переклади
-   ```bash
-   python compile_translations.py
-   ```
-
-5. Запустити MongoDB локально або використовувати віддалений екземпляр
-
-6. Створити файл `.env` з необхідними змінними оточення (див. `ENVIRONMENT.md`)
-
-7. Запустити бота
-   ```bash
-   python -m app
-   ```
-
-### 📂 Структура проекту
-
-```
-├── app/                      # Основний пакет додатку
-│   ├── handlers/             # Обробники повідомлень та команд
-│   ├── middlewares/          # Компоненти проміжного ПЗ
-│   ├── database/             # Інтеграція з базою даних
-│   ├── keyboards/            # Клавіатури відповідей та інлайн-клавіатури
-│   ├── config/               # Управління конфігурацією
-│   └── utils/                # Службові функції
-├── locales/                  # Файли перекладів
-│   ├── en/                   # Англійські переклади
-│   ├── ru/                   # Російські переклади
-│   └── uk/                   # Українські переклади
-├── .env.example              # Приклад змінних оточення
-└── compile_translations.py   # Помічник для компіляції i18n
+# Запуск бота
+python -m app
 ```
 
-### 🛠️ Налаштування
+## Структура проекту
 
-Шаблон розроблено для легкого розширення:
+```
+app/
+├── __init__.py
+├── __main__.py          # Точка входу
+├── config/              # Конфігурація
+│   ├── __init__.py
+│   └── settings.py      # Налаштування з середовища
+├── database/            # Шар бази даних
+│   ├── __init__.py
+│   └── mongodb.py       # Підключення до MongoDB
+├── handlers/            # Обробники повідомлень
+│   ├── __init__.py      # Реєстрація обробників
+│   ├── start.py
+│   ├── help.py
+│   ├── language.py
+│   └── echo.py
+├── keyboards/           # Клавіатури Telegram
+│   ├── __init__.py
+│   └── language.py      # Вибір мови
+├── middlewares/         # Middleware запитів
+│   ├── __init__.py
+│   ├── i18n.py          # Інтернаціоналізація
+│   └── throttling.py    # Обмеження частоти
+└── utils/               # Утиліти
+    ├── __init__.py
+    ├── commands.py      # Налаштування команд бота
+    └── misc.py          # Допоміжні функції
 
-1. Додайте нові обробники в `app/handlers/`
-2. Створіть нові макети клавіатур у `app/keyboards/`
-3. Додайте додаткові колекції/моделі в `app/database/`
-4. Розширюйте систему проміжного ПЗ в `app/middlewares/`
+locales/                 # Файли перекладів
+├── en/LC_MESSAGES/
+├── ru/LC_MESSAGES/
+└── uk/LC_MESSAGES/
+```
 
-### 🔗 Ліцензія
+## Конфігурація
 
-MIT — вільно для використання та модифікації. Атрибуція вітається!
+Приклад файлу `.env`:
+
+```
+# Бот
+BOT_TOKEN=your_telegram_bot_token
+BOT_NAME=TeleForge
+
+# База даних
+MONGODB_URI=mongodb://localhost:27017/tg_bot
+
+# Адмін
+ADMIN_IDS=123456789,987654321
+
+# Локалізація
+DEFAULT_LANGUAGE=uk
+```
+
+## Розширення
+
+### Додавання обробників
+
+1. Створіть файл обробника в `app/handlers/`
+2. Визначте функцію обробника та функцію реєстрації:
+
+```python
+from aiogram import Dispatcher, F
+from aiogram.filters import Command
+from aiogram.types import Message
+from app.middlewares.i18n import _
+
+async def cmd_custom(message: Message) -> None:
+    await message.answer(_("Відповідь на користувацьку команду"))
+
+def register_custom_handlers(dp: Dispatcher) -> None:
+    dp.message.register(cmd_custom, Command("custom"))
+```
+
+3. Зареєструйте в `app/handlers/__init__.py`
+
+### Додавання мов
+
+1. Створіть структуру директорій:
+```bash
+mkdir -p locales/new_lang/LC_MESSAGES
+```
+
+2. Скопіюйте шаблон і перекладіть:
+```bash
+cp locales/bot.pot locales/new_lang/LC_MESSAGES/bot.po
+# Відредагуйте файл .po з перекладами
+```
+
+3. Скомпілюйте переклади:
+```bash
+python compile_translations.py
+```
+
+4. Оновіть клавіатуру в `app/keyboards/language.py`
+
+## Ліцензія
+
+MIT
 
 </details>
 
----
-
 <div align="center">
   <h3>Crafted with ❤️ by a developer who understands Telegram bots</h3>
-  <p>Based on real-world experience and best practices</p>
+  
+  <a href="https://github.com/mirvald-space/TeleForge/stargazers">
+    <img src="https://img.shields.io/github/stars/mirvald-space/TeleForge.svg?style=social&label=Star&maxAge=2592000" alt="GitHub stars">
+  </a>
+  <a href="https://github.com/mirvald-space/TeleForge/network">
+    <img src="https://img.shields.io/github/forks/mirvald-space/TeleForge.svg?style=social&label=Fork&maxAge=2592000" alt="GitHub forks">
+  </a>
 </div> 

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://i.imgur.com/qs9Vj4Z.png" alt="TeleForge Logo" width="500" />
+  <img src="/cover.png" alt="TeleForge Logo" width="500" />
   <h1>TeleForge</h1>
   <p>Production-ready Telegram bot template with clean architecture</p>
 
